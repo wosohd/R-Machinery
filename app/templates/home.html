@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Home - R Machinery{% endblock %}
+{% block content %}
+  <h1>Welcome to R Machinery</h1>
+  <p>Your trusted platform for buying and maintaining machinery across 15+ categories.</p>
+  <a href="{{ url_for('list_machines') }}" class="btn-primary">Browse Machines</a>
+{% endblock %}

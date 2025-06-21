@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Machines - R Machinery{% endblock %}
+{% block content %}
+  <h2>Available Machines</h2>
+  <form method="get">
+    <label for="category">Category:</label>
+    <select name="category" id="category" onchange="this.form.submit()">
+      <option value="">All Categories</option>
+      {% for cat in [
+        'Engines', 'Silage/Forage', 'Shelling', 'Milling', 'Irrigation', 'Lumbering & Woodwork',
+        'Construction equipments', 'Workshop tools', 'Assorted hard & Power tools', 'Generators', 'Tractors',
+        'Dairy Farming', 'Farmyard Structure & Construction', 'Protective Gear', 'Machine Instillation'] %}
+        <option value="{{ cat }}" {% if request.args.get('category') == cat %}selected{% endif %}>{{ cat }}</option>
+      {% endfor %}
+    </select>
+  </form>
+
+  <div class="machine-grid">
+    {% for machine in machines %}
+      <div class="machine-card">
+        <h3>{{ machine.name }}</h3>
+        <p><strong>Category:</strong> {{ machine.category }}</p>
+        <p><strong>Make/Model:</strong> {{ machine.make_model }}</p>
+        <p><strong>Year:</strong> {{ machine.year }}</p>
+        <a href="https://www.facebook.com/yourpage" class="btn-primary" target="_blank">Contact Seller</a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

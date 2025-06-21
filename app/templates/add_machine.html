@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Add Machine - R Machinery{% endblock %}
+{% block content %}
+  <h2>List a New Machine</h2>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <div>{{ form.name.label }} {{ form.name() }}</div>
+    <div>{{ form.year.label }} {{ form.year() }}</div>
+    <div>{{ form.make_model.label }} {{ form.make_model() }}</div>
+    <div>{{ form.serial_number.label }} {{ form.serial_number() }}</div>
+    <div>{{ form.category.label }} {{ form.category() }}</div>
+    <div>{{ form.description.label }} {{ form.description() }}</div>
+    <div>{{ form.submit(class='btn-primary') }}</div>
+  </form>
+{% endblock %}

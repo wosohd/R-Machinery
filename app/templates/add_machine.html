@@ -1,15 +1,40 @@
 {% extends "base.html" %}
 {% block title %}Add Machine - R Machinery{% endblock %}
+{% block body_id %}add-machine-page{% endblock %}
 {% block content %}
-  <h2>List a New Machine</h2>
-  <form method="POST">
-    {{ form.hidden_tag() }}
-    <div>{{ form.name.label }} {{ form.name() }}</div>
-    <div>{{ form.year.label }} {{ form.year() }}</div>
-    <div>{{ form.make_model.label }} {{ form.make_model() }}</div>
-    <div>{{ form.serial_number.label }} {{ form.serial_number() }}</div>
-    <div>{{ form.category.label }} {{ form.category() }}</div>
-    <div>{{ form.description.label }} {{ form.description() }}</div>
-    <div>{{ form.submit(class='btn-primary') }}</div>
-  </form>
+  <div class="container mt-5" style="max-width: 700px;">
+    <h2 class="text-center text-dark mb-4">List a New Machine</h2>
+
+    <form method="POST">
+      {{ form.hidden_tag() }}
+
+      <div class="mb-3">
+        {{ form.name.label(class="form-label") }}
+        {{ form.name(class="form-control") }}
+      </div>
+      <div class="mb-3">
+        {{ form.year.label(class="form-label") }}
+        {{ form.year(class="form-control") }}
+      </div>
+      <div class="mb-3">
+        {{ form.make_model.label(class="form-label") }}
+        {{ form.make_model(class="form-control") }}
+      </div>
+      <div class="mb-3">
+        {{ form.serial_number.label(class="form-label") }}
+        {{ form.serial_number(class="form-control") }}
+      </div>
+      <div class="mb-3">
+        {{ form.category.label(class="form-label") }}
+        {{ form.category(class="form-select") }}
+      </div>
+      <div class="mb-3">
+        {{ form.description.label(class="form-label") }}
+        {{ form.description(class="form-control") }}
+      </div>
+
+      <button type="submit" class="btn btn-danger w-100">Publish Listing</button>
+    </form>
+  </div>
 {% endblock %}
+

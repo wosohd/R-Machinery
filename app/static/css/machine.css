@@ -1,0 +1,104 @@
+/* machine.css - Styles specific to machine listings and filters */
+
+.machine-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.machine-filter select,
+.machine-filter input[type="text"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 200px;
+}
+
+.machine-card {
+  position: relative;
+}
+
+.machine-card .status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.status.sold {
+  background-color: #888;
+}
+
+.status.available {
+  background-color: #28a745;
+}
+
+/* Pagination styles */
+.pagination {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.pagination a {
+  background: #000;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.pagination a:hover {
+  background: #ff0000;
+}
+
+.pagination span {
+  font-weight: bold;
+  color: #333;
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+  .machine-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .machine-filter select,
+  .machine-filter input[type="text"] {
+    width: 100%;
+  }
+
+  .machine-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .machine-card {
+    padding: 1rem;
+  }
+
+  .machine-card .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .machine-card .status {
+    top: 8px;
+    right: 8px;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .pagination a {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}

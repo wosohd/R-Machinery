@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from app import app, db
 from app.forms import MachineForm
@@ -26,5 +26,21 @@ def add_machine():
 
 @app.route('/machines')
 def list_machines():
-    machines = Machine.query.all()
+    page = request.args.get('page', 1, type=int)
+    category = request.args.get('category')
+    search = request.args.get('search', '').lower()
+
+    query = Machine.query
+
+    if category:
+        query = query.filter(Machine.category == category)
+
+    if search:
+        query = query.filter(
+            Machine.name.ilike(f"%{search}%") |
+            Machine.make_model.ilike(f"%{search}%")
+        )
+
+    machines = query.order_by(Machine.created_at.desc()).paginate(page=page, per_page=6)
+
     return render_template('machines.html', machines=machines)

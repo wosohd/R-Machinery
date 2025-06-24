@@ -1,29 +1,95 @@
 {% extends "base.html" %}
-{% block title %}Machines - R Machinery{% endblock %}
-{% block content %}
-  <h2>Available Machines</h2>
-  <form method="get">
-    <label for="category">Category:</label>
-    <select name="category" id="category" onchange="this.form.submit()">
-      <option value="">All Categories</option>
-      {% for cat in [
-        'Engines', 'Silage/Forage', 'Shelling', 'Milling', 'Irrigation', 'Lumbering & Woodwork',
-        'Construction equipments', 'Workshop tools', 'Assorted hard & Power tools', 'Generators', 'Tractors',
-        'Dairy Farming', 'Farmyard Structure & Construction', 'Protective Gear', 'Machine Instillation'] %}
-        <option value="{{ cat }}" {% if request.args.get('category') == cat %}selected{% endif %}>{{ cat }}</option>
-      {% endfor %}
-    </select>
-  </form>
+{% block title %}Machines - R Machinery
+    <!-- link css stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='machine.css') }}">
 
-  <div class="machine-grid">
-    {% for machine in machines %}
-      <div class="machine-card">
-        <h3>{{ machine.name }}</h3>
-        <p><strong>Category:</strong> {{ machine.category }}</p>
-        <p><strong>Make/Model:</strong> {{ machine.make_model }}</p>
-        <p><strong>Year:</strong> {{ machine.year }}</p>
-        <a href="https://www.facebook.com/yourpage" class="btn-primary" target="_blank">Contact Seller</a>
+{% endblock %}
+{% block body_id %}machines-page{% endblock %}
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="text-center text-dark mb-4">Available Machines</h2>
+
+    <!-- Filter Bar -->
+    <form method="get" class="row g-3 align-items-end mb-4 machine-filter">
+      <div class="col-md-4">
+        <label for="category" class="form-label">Category:</label>
+        <select name="category" id="category" class="form-select" onchange="this.form.submit()">
+          <option value="">All Categories</option>
+          {% for cat in ['Engines','Silage/Forage','Shelling','Milling','Irrigation','Lumbering & Woodwork',
+                         'Construction equipments','Workshop tools','Assorted hard & Power tools','Generators',
+                         'Tractors','Dairy Farming','Farmyard Structure & Construction','Protective Gear',
+                         'Machine Instillation'] %}
+            <option value="{{ cat }}" {% if request.args.get('category') == cat %}selected{% endif %}>{{ cat }}</option>
+          {% endfor %}
+        </select>
       </div>
-    {% endfor %}
+
+      <div class="col-md-6">
+        <label for="search" class="form-label">Search:</label>
+        <input type="text" name="search" id="search" class="form-control"
+               placeholder="Search machines..."
+               value="{{ request.args.get('search','') }}">
+      </div>
+
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-danger w-100">Apply</button>
+      </div>
+    </form>
+
+    <!-- Machine Cards -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for machine in machines.items %}
+        <div class="col">
+          <div class="card h-100 position-relative">
+
+            {% if machine.is_sold %}
+              <span class="position-absolute top-0 end-0 badge bg-secondary m-2">Sold</span>
+            {% else %}
+              <span class="position-absolute top-0 end-0 badge bg-success m-2">Available</span>
+            {% endif %}
+
+            <div class="card-body">
+              <h5 class="card-title">{{ machine.name }}</h5>
+              <p class="card-text"><strong>Category:</strong> {{ machine.category }}</p>
+              <p class="card-text"><strong>Make/Model:</strong> {{ machine.make_model }}</p>
+              <p class="card-text"><strong>Year:</strong> {{ machine.year }}</p>
+            </div>
+
+            <div class="card-footer bg-transparent border-top-0">
+              <a href="https://www.facebook.com/yourpage"
+                 class="btn btn-outline-danger w-100"
+                 target="_blank">
+                 Contact Seller
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination mt-4 text-center">
+      {% if machines.has_prev %}
+        <a class="btn btn-outline-secondary me-2"
+           href="{{ url_for('list_machines', page=machines.prev_num,
+                            category=request.args.get('category'),
+                            search=request.args.get('search')) }}">
+           &laquo; Prev
+        </a>
+      {% endif %}
+
+      <span class="fw-bold">Page {{ machines.page }} of {{ machines.pages }}</span>
+
+      {% if machines.has_next %}
+        <a class="btn btn-outline-secondary ms-2"
+           href="{{ url_for('list_machines', page=machines.next_num,
+                            category=request.args.get('category'),
+                            search=request.args.get('search')) }}">
+           Next &raquo;
+        </a>
+      {% endif %}
+    </div>
   </div>
 {% endblock %}
+
+

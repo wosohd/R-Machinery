@@ -4,10 +4,8 @@
 {% block content %}
   <div class="container mt-5" style="max-width: 600px;">
     <h2 class="text-center text-danger mb-4">Register</h2>
-
-    <form method="POST">
+    <form method="POST" action="">
       {{ form.hidden_tag() }}
-
       <div class="mb-3">
         {{ form.username.label(class="form-label") }}
         {{ form.username(class="form-control") }}
@@ -24,8 +22,9 @@
         {{ form.confirm_password.label(class="form-label") }}
         {{ form.confirm_password(class="form-control") }}
       </div>
-
-      <button type="submit" class="btn btn-danger w-100">Create Account</button>
+      <div class="text-center">
+        {{ form.submit(class='btn btn-rm w-100') }}
+      </div>
     </form>
   </div>
 {% endblock %}

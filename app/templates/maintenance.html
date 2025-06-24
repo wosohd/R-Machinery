@@ -3,34 +3,28 @@
 {% block body_id %}maintenance-page{% endblock %}
 {% block content %}
   <div class="container mt-5" style="max-width: 650px;">
-    <h2 class="text-center text-dark mb-4">
-      Log Maintenance for {{ machine.name }}
-    </h2>
-
+    <h2 class="text-center text-rm-red mb-4">Log Maintenance for {{ machine.name }}</h2>
     <form method="POST">
       {{ form.hidden_tag() }}
-
       <div class="mb-3">
         {{ form.service_date.label(class="form-label") }}
         {{ form.service_date(class="form-control") }}
       </div>
-
       <div class="mb-3">
         {{ form.technician.label(class="form-label") }}
         {{ form.technician(class="form-control") }}
       </div>
-
       <div class="mb-3">
         {{ form.parts_used.label(class="form-label") }}
         {{ form.parts_used(class="form-control") }}
       </div>
-
       <div class="mb-3">
         {{ form.notes.label(class="form-label") }}
         {{ form.notes(class="form-control") }}
       </div>
-
-      <button type="submit" class="btn btn-danger w-100">Save Log</button>
+      <div class="text-center">
+        {{ form.submit(class='btn btn-rm w-100') }}
+      </div>
     </form>
   </div>
 {% endblock %}

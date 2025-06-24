@@ -4,17 +4,11 @@
 {% block content %}
   <div class="container mt-5" style="max-width: 600px;">
     <h2 class="text-center text-dark mb-4">My Profile</h2>
-
     <div class="text-center mb-4">
-      <img src="{{ image_file }}"
-           alt="Profile picture"
-           class="rounded-circle border border-danger"
-           width="120" height="120">
+      <img src="{{ image_file }}" alt="Profile Picture" class="rounded-circle border border-rm-red" width="120" height="120">
     </div>
-
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" action="" enctype="multipart/form-data">
       {{ form.hidden_tag() }}
-
       <div class="mb-3">
         {{ form.username.label(class="form-label") }}
         {{ form.username(class="form-control") }}
@@ -27,9 +21,11 @@
         {{ form.picture.label(class="form-label") }}
         {{ form.picture(class="form-control") }}
       </div>
-
-      <button type="submit" class="btn btn-danger w-100">Update Profile</button>
+      <div class="text-center">
+        {{ form.submit(class='btn btn-rm w-100') }}
+      </div>
     </form>
   </div>
 {% endblock %}
+
 

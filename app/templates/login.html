@@ -2,26 +2,34 @@
 {% block title %}Login - R Machinery{% endblock %}
 {% block body_id %}login-page{% endblock %}
 {% block content %}
-  <div class="container mt-5" style="max-width: 500px;">
-    <h2 class="text-center text-danger mb-4">Login</h2>
-    <form method="POST" action="">
-      {{ form.hidden_tag() }}
-      <div class="mb-3">
-        {{ form.email.label(class="form-label") }}
-        {{ form.email(class="form-control") }}
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-rm-red text-white">Login</div>
+        <div class="card-body">
+          <form method="POST" action="{{ url_for('main.login') }}">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+              {{ form.email.label(class="form-label") }}
+              {{ form.email(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ form.password.label(class="form-label") }}
+              {{ form.password(class="form-control") }}
+            </div>
+            <div class="form-check mb-3">
+              {{ form.remember(class="form-check-input") }}
+              {{ form.remember.label(class="form-check-label") }}
+            </div>
+            {{ form.submit(class="btn btn-rm w-100") }}
+          </form>
+        </div>
+        <div class="card-footer text-center">
+          <small>Don't have an account? <a href="{{ url_for('main.register') }}">Register here</a></small>
+        </div>
       </div>
-      <div class="mb-3">
-        {{ form.password.label(class="form-label") }}
-        {{ form.password(class="form-control") }}
-      </div>
-      <div class="form-check mb-3">
-        {{ form.remember(class="form-check-input") }}
-        {{ form.remember.label(class="form-check-label") }}
-      </div>
-      <div class="text-center">
-        {{ form.submit(class='btn btn-rm w-100') }}
-      </div>
-    </form>
+    </div>
   </div>
 {% endblock %}
+
 

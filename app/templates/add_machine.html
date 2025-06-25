@@ -2,39 +2,44 @@
 {% block title %}Add Machine - R Machinery{% endblock %}
 {% block body_id %}add-machine-page{% endblock %}
 {% block content %}
-  <div class="container mt-5" style="max-width: 700px;">
-    <h2 class="text-center text-dark mb-4">List a New Machine</h2>
-    <form method="POST">
-      {{ form.hidden_tag() }}
-      <div class="mb-3">
-        {{ form.name.label(class="form-label") }}
-        {{ form.name(class="form-control") }}
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-rm-red text-white">Add New Machine</div>
+        <div class="card-body">
+          <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+              {{ form.name.label(class="form-label") }}
+              {{ form.name(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ form.year.label(class="form-label") }}
+              {{ form.year(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ form.make_model.label(class="form-label") }}
+              {{ form.make_model(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ form.serial_number.label(class="form-label") }}
+              {{ form.serial_number(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ form.category.label(class="form-label") }}
+              {{ form.category(class="form-select") }}
+            </div>
+            <div class="mb-3">
+              {{ form.description.label(class="form-label") }}
+              {{ form.description(class="form-control", rows=4) }}
+            </div>
+            {{ form.submit(class="btn btn-rm w-100") }}
+          </form>
+        </div>
       </div>
-      <div class="mb-3">
-        {{ form.year.label(class="form-label") }}
-        {{ form.year(class="form-control") }}
-      </div>
-      <div class="mb-3">
-        {{ form.make_model.label(class="form-label") }}
-        {{ form.make_model(class="form-control") }}
-      </div>
-      <div class="mb-3">
-        {{ form.serial_number.label(class="form-label") }}
-        {{ form.serial_number(class="form-control") }}
-      </div>
-      <div class="mb-3">
-        {{ form.category.label(class="form-label") }}
-        {{ form.category(class="form-select") }}
-      </div>
-      <div class="mb-3">
-        {{ form.description.label(class="form-label") }}
-        {{ form.description(class="form-control") }}
-      </div>
-      <div class="text-center">
-        {{ form.submit(class='btn btn-rm w-100') }}
-      </div>
-    </form>
+    </div>
   </div>
 {% endblock %}
+
 
 

@@ -3,12 +3,12 @@
 {% block body_id %}home-page{% endblock %}
 {% block content %}
   <div class="container mt-5 text-center">
-    <div class="logo display-4 fw-bold text-rm-red mb-3">R Machinery</div>
+    <div class="logo display-4 fw-bold text-danger mb-3">R Machinery</div>
     <h1 class="text-dark mb-3">Welcome to R Machinery</h1>
     <p class="lead text-secondary mb-4">
       Your trusted platform for buying and maintaining machinery across 15+ categories.
     </p>
-    <a href="{{ url_for('list_machines') }}" class="btn btn-rm btn-lg">Browse Machines</a>
+    <a href="{{ url_for('sales.list_machines') }}" class="btn btn-danger btn-lg">Browse Machines</a>
   </div>
 {% endblock %}
 

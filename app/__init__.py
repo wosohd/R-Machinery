@@ -4,15 +4,34 @@ from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
-app = Flask(__name__)
-FLASK_APP=app
-app.config['SECRET_KEY'] = ''
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+# Initialize extensions
+db = SQLAlchemy()
+migrate = Migrate()
+bcrypt = Bcrypt()
+login_manager = LoginManager()
+login_manager.login_view = 'main.login'
 login_manager.login_message_category = 'danger'
 
-from app import routes, models, sales, maintenance
+def create_app():
+    app = Flask(__name__)
+    app.config['SECRET_KEY'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+    # Initialize extensions with app
+    db.init_app(app)
+    migrate.init_app(app, db)
+    bcrypt.init_app(app)
+    login_manager.init_app(app)
+
+    # Register Blueprints
+    from app.routes import main as main_blueprint
+    from app.sales import sales as sales_blueprint
+    from app.maintenance import maintenance as maintenance_blueprint
+
+    app.register_blueprint(main_blueprint)
+    app.register_blueprint(sales_blueprint)
+    app.register_blueprint(maintenance_blueprint)
+
+    return app
+
+

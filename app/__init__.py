@@ -14,7 +14,7 @@ login_manager.login_message_category = 'danger'
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = ''
+    app.config['SECRET_KEY'] = '0702085689'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
     # Initialize extensions with app

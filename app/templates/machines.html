@@ -1,78 +1,51 @@
 {% extends "base.html" %}
-{% block title %}Machines - R Machinery{% endblock %}
+{% block title %}Available Machines - R Machinery{% endblock %}
 {% block body_id %}machines-page{% endblock %}
-{% block content %}
-<div class="container">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="text-rm-red">Available Machines</h2>
-    <form method="GET" action="{{ url_for('sales.list_machines') }}" class="d-flex">
-      <select class="form-select me-2" name="category">
-        <option value="">All Categories</option>
-        {% for cat in ['Engines', 'Silage/Forage', 'Shelling', 'Milling', 'Irrigation',
-                      'Lumbering & Woodwork', 'Construction equipments', 'Workshop tools',
-                      'Assorted hard & Power tools', 'Generators', 'Tractors', 'Dairy Farming',
-                      'Farmyard Structure & Construction', 'Protective Gear', 'Machine Instillation'] %}
-        <option value="{{ cat }}" {% if request.args.get('category') == cat %}selected{% endif %}>{{ cat }}</option>
-        {% endfor %}
-      </select>
-      <input type="text" name="search" placeholder="Search..." value="{{ request.args.get('search', '') }}" class="form-control me-2">
-      <button type="submit" class="btn btn-rm">Filter</button>
-    </form>
-  </div>
 
-  <div class="row">
-    {% for machine in machines.items %}
+{% block content %}
+<div class="text-center mb-5">
+  <h2>Explore Our Machine Inventory</h2>
+  <p class="text-muted">Browse available machines across 15 categories.</p>
+</div>
+
+<div class="row">
+  {% for machine in machines.items %}
     <div class="col-md-4 mb-4">
       <div class="card h-100 shadow-sm">
+        <div class="card-header bg-rm-red text-white text-center">
+          {{ machine.name }}
+        </div>
         <div class="card-body">
-          <h5 class="card-title">{{ machine.name }}</h5>
-          <p class="card-text"><strong>Year:</strong> {{ machine.year }}</p>
-          <p class="card-text"><strong>Category:</strong> {{ machine.category }}</p>
-          <p class="card-text"><strong>Status:</strong> 
+          <h5 class="card-title">{{ machine.make_model }}</h5>
+          <p class="card-text">
+            <strong>Year:</strong> {{ machine.year }}<br />
+            <strong>Category:</strong> {{ machine.category }}<br />
+            <strong>Status:</strong>
             {% if machine.is_sold %}
               <span class="badge bg-secondary">Sold</span>
             {% else %}
               <span class="badge bg-success">Available</span>
             {% endif %}
           </p>
-          <a href="{{ url_for('sales.machine_detail', machine_id=machine.id) }}" class="btn btn-outline-danger w-100">Contact Seller</a>
+        </div>
+        <div class="card-footer text-center">
+          <a href="{{ url_for('machine_detail', machine_id=machine.id) }}" class="btn btn-outline-danger btn-sm">View Details</a>
         </div>
       </div>
     </div>
-    {% endfor %}
-  </div>
+  {% endfor %}
+</div>
 
-  {% if machines.pages > 1 %}
-  <nav class="mt-4">
-    <ul class="pagination justify-content-center">
-      {% if machines.has_prev %}
-        <li class="page-item"><a class="page-link" href="{{ url_for('sales.list_machines', page=machines.prev_num, category=request.args.get('category'), search=request.args.get('search')) }}">Previous</a></li>
-      {% else %}
-        <li class="page-item disabled"><span class="page-link">Previous</span></li>
-      {% endif %}
-
-      {% for page_num in machines.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
-        {% if page_num %}
-          {% if page_num == machines.page %}
-            <li class="page-item active"><span class="page-link">{{ page_num }}</span></li>
-          {% else %}
-            <li class="page-item"><a class="page-link" href="{{ url_for('sales.list_machines', page=page_num, category=request.args.get('category'), search=request.args.get('search')) }}">{{ page_num }}</a></li>
-          {% endif %}
-        {% else %}
-          <li class="page-item disabled"><span class="page-link">…</span></li>
-        {% endif %}
-      {% endfor %}
-
-      {% if machines.has_next %}
-        <li class="page-item"><a class="page-link" href="{{ url_for('sales.list_machines', page=machines.next_num, category=request.args.get('category'), search=request.args.get('search')) }}">Next</a></li>
-      {% else %}
-        <li class="page-item disabled"><span class="page-link">Next</span></li>
-      {% endif %}
-    </ul>
-  </nav>
+<div class="d-flex justify-content-center mt-4">
+  {% if machines.has_prev %}
+    <a href="{{ url_for('list_machines', page=machines.prev_num) }}" class="btn btn-outline-secondary me-2">&laquo; Previous</a>
+  {% endif %}
+  {% if machines.has_next %}
+    <a href="{{ url_for('list_machines', page=machines.next_num) }}" class="btn btn-outline-secondary">Next &raquo;</a>
   {% endif %}
 </div>
 {% endblock %}
+
 
 
 

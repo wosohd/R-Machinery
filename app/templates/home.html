@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 {% block title %}Home - R Machinery{% endblock %}
 {% block body_id %}home-page{% endblock %}
+
 {% block content %}
-  <div class="container mt-5 text-center">
-    <div class="logo display-4 fw-bold text-danger mb-3">R Machinery</div>
-    <h1 class="text-dark mb-3">Welcome to R Machinery</h1>
-    <p class="lead text-secondary mb-4">
-      Your trusted platform for buying and maintaining machinery across 15+ categories.
-    </p>
-    <a href="{{ url_for('sales.list_machines') }}" class="btn btn-danger btn-lg">Browse Machines</a>
+<div class="hero-section">
+  <div class="hero-content">
+    <h1>Welcome to R Machinery</h1>
+    <p>Powering Progress Across 15 Machine Categories with Reliable Sales and Maintenance Services.</p>
+    <a href="{{ url_for('list_machines') }}" class="btn btn-rm mt-3">Browse Machines</a>
   </div>
+</div>
+
+<div class="container my-5 text-center">
+  <h2 class="mb-4">Your One-Stop Solution for Industrial Machines</h2>
+  <p class="lead">R Machinery is committed to delivering durable, reliable, and top-performing equipment across agriculture, construction, and industrial sectors. Whether you're looking to buy, maintain, or inquire — we’re ready to serve.</p>
+</div>
 {% endblock %}
+
 
 
 

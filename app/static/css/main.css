@@ -1,50 +1,174 @@
-/* main.css - Custom global styles and brand definitions for R Machinery */
+/* main.css - R Machinery global styles */
 
 :root {
-  --rm-red: #c40000;
-  --rm-black: #000000;
+  --rm-red: #d8232a;
+  --rm-dark: #111111;
+  --rm-light: #f9f9f9;
+  --rm-gray: #666666;
   --rm-white: #ffffff;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f9f9f9;
-  color: var(--rm-black);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--rm-light);
+  color: var(--rm-dark);
   margin: 0;
   padding: 0;
 }
 
-.logo {
-  font-family: 'Roboto', sans-serif;
-  font-size: 2.5rem;
+a {
   color: var(--rm-red);
-  font-weight: 700;
+  text-decoration: none;
 }
 
-/* Reusable Utility Classes */
-.text-rm-red {
-  color: var(--rm-red) !important;
-}
-
-.bg-rm-red {
-  background-color: var(--rm-red) !important;
-}
-
-.border-rm-red {
-  border-color: var(--rm-red) !important;
+a:hover {
+  color: #a50e1a;
+  text-decoration: underline;
 }
 
 .btn-rm {
   background-color: var(--rm-red);
-  color: white;
+  color: var(--rm-white);
   border: none;
+  transition: background-color 0.3s ease;
 }
 
 .btn-rm:hover {
-  background-color: #a30000;
-  color: white;
+  background-color: #a50e1a;
+}
+
+.bg-rm-red {
+  background-color: var(--rm-red) !important;
+  color: var(--rm-white);
+}
+
+.card {
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+  height: 40px;
 }
 
 .footer {
-  font-size: 0.9rem;
+  background-color: var(--rm-dark);
+  color: var(--rm-white);
+  padding: 1rem 0;
+  text-align: center;
 }
+
+.flash-message {
+  margin-top: 1rem;
+}
+
+.form-page {
+  min-height: 100vh;
+  background: linear-gradient(to right, #f8f9fa, #f1f1f1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--rm-white);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  color: var(--rm-dark);
+}
+
+.form-floating label {
+  color: var(--rm-gray);
+}
+
+input.form-control,
+input.form-control:focus {
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  box-shadow: none;
+}
+
+.alert {
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Home/About Hero Section Background */
+.hero-section {
+  position: relative;
+  background: url('/static/images/bgtractor.png') center center / cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.6); /* dark overlay */
+  z-index: 0;
+}
+
+.hero-section .hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+}
+.footer {
+  border-top: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+.footer a {
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer .text-rm-red:hover {
+  color: #8b0000;
+}
+
+.text-rm-red {
+  color: #c62828;
+}
+

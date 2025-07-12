@@ -48,32 +48,101 @@ a:hover {
   box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
 }
 
-.navbar-brand img {
-  height: 40px;
+.navbar {
+  background-color: var(--rm-red);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar .logo {
+  height: 55px;
+  max-height: 60px;
+}
+
+.navbar .nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.navbar .nav-links a {
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  color: var(--rm-light);
+}
+
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile menu behavior */
+@media (max-width: 768px) {
+  .navbar .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .navbar .nav-links.show {
+    display: flex;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
 }
 
 .footer {
   background-color: var(--rm-dark);
   color: var(--rm-white);
-  padding: 1rem 0;
-  text-align: center;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.footer a {
+  color: var(--rm-white);
+  margin: 0 0.5rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer a:hover {
+  color: #8b0000;
 }
 
 .flash-message {
   margin-top: 1rem;
 }
 
+/* Form page styling */
 .form-page {
   min-height: 100vh;
   background: linear-gradient(to right, #f8f9fa, #f1f1f1);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 3rem 1rem;
 }
 
 .form-container {
   width: 100%;
-  max-width: 400px;
+  max-width: 480px;
   background-color: var(--rm-white);
   padding: 2rem;
   border-radius: 0.5rem;
@@ -93,7 +162,9 @@ a:hover {
 }
 
 input.form-control,
-input.form-control:focus {
+input.form-control:focus,
+select.form-select,
+textarea.form-control {
   border-radius: 0.5rem;
   border: 1px solid #ccc;
   box-shadow: none;
@@ -106,7 +177,7 @@ input.form-control:focus {
   margin-bottom: 1rem;
 }
 
-/* Home/About Hero Section Background */
+/* Hero Section */
 .hero-section {
   position: relative;
   background: url('/static/images/bgtractor.png') center center / cover no-repeat;
@@ -122,7 +193,7 @@ input.form-control:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(17, 17, 17, 0.6); /* dark overlay */
+  background-color: rgba(17, 17, 17, 0.6);
   z-index: 0;
 }
 
@@ -144,7 +215,6 @@ input.form-control:focus {
   font-weight: 300;
 }
 
-/* Responsive fixes */
 @media (max-width: 768px) {
   .hero-section h1 {
     font-size: 2.2rem;
@@ -153,22 +223,15 @@ input.form-control:focus {
   .hero-section p {
     font-size: 1rem;
   }
-}
-.footer {
-  border-top: 1px solid #ddd;
-  font-size: 0.95rem;
-}
 
-.footer a {
-  text-decoration: none;
-  transition: color 0.3s ease-in-out;
-}
+  .form-container {
+    padding: 1.5rem;
+  }
 
-.footer .text-rm-red:hover {
-  color: #8b0000;
-}
-
-.text-rm-red {
-  color: #c62828;
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
 }
 

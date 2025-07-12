@@ -1,21 +1,40 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="hero-section">
-  <div class="hero-content">
-    <h1>Welcome to R Machinery</h1>
-    <p>Powering Progress Across 15 Machine Categories with Reliable Sales and Maintenance Services.</p>
-    <a href="{{ url_for('list_machines') }}" class="btn btn-rm mt-3">Browse Machines</a>
+<section class="hero" style="background: url({{ url_for('static', filename='images/bgtractor.png') }}) no-repeat center center; background-size: cover;">
+  <div class="hero-text text-center text-white py-5">
+    <h1 class="display-4">Welcome to R Machinery</h1>
+    <p class="lead">Your trusted marketplace for heavy-duty equipment</p>
+    <a href="{{ url_for('sales.list_machines') }}" class="btn btn-rm mt-3">Browse Machines</a>
   </div>
-</div>
+</section>
 
-<div class="container my-5 text-center">
-  <h2 class="mb-4">Your One-Stop Solution for Industrial Machines</h2>
-  <p class="lead">R Machinery is committed to delivering durable, reliable, and top-performing equipment across agriculture, construction, and industrial sectors. Whether you're looking to buy, maintain, or inquire — we’re ready to serve.</p>
-</div>
+<section class="container mt-5">
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 shadow h-100">
+        <div class="card-body">
+          <h5 class="card-title">Wide Selection</h5>
+          <p class="card-text">Browse machinery across 15 categories tailored to your needs.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 shadow h-100">
+        <div class="card-body">
+          <h5 class="card-title">Trusted Sellers</h5>
+          <p class="card-text">All listings are vetted for quality and authenticity.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 shadow h-100">
+        <div class="card-body">
+          <h5 class="card-title">Support & Service</h5>
+          <p class="card-text">We offer top-notch after-sales support and machinery servicing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
-
-
-
-
-

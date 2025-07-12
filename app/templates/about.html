@@ -1,37 +1,41 @@
 {% extends "base.html" %}
-{% block title %}About - R Machinery{% endblock %}
-{% block body_id %}about-page{% endblock %}
 
 {% block content %}
-<div class="hero-section">
-  <div class="hero-content">
-    <h1>About R Machinery</h1>
-    <p>Driving power and progress across Kenya and beyond.</p>
+<section class="hero" style="background: url({{ url_for('static', filename='images/bgtractor.png') }}) no-repeat center center; background-size: cover;">
+  <div class="hero-text text-center text-white py-5">
+    <h1 class="display-4">About R Machinery</h1>
+    <p class="lead">Learn more about our journey and mission</p>
   </div>
-</div>
+</section>
 
-<div class="container my-5">
-  <h2 class="text-center mb-4">Who We Are</h2>
-  <p class="lead text-center">
-    R Machinery is a proudly Kenyan company specializing in the sale and maintenance of machinery across 15 core categories.
-    With a team of seasoned experts and a passion for industrial growth, we help businesses thrive through dependable equipment.
-  </p>
+<section class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Who We Are</h2>
+          <p>R Machinery is a premier destination for reliable, high-performance machinery sales and maintenance services. We specialize in sourcing, servicing, and supporting heavy-duty equipment across 15 distinct categories, making us a trusted name for industries that rely on machinery.</p>
+          
+          <h3 class="mt-4">Our Mission</h3>
+          <p>To empower businesses and individuals by providing a streamlined platform to access the best machinery on the market—reliably and transparently.</p>
+          
+          <h3 class="mt-4">What We Offer</h3>
+          <ul>
+            <li>Vetted machinery listings with full service histories</li>
+            <li>Secure transactions and reliable after-sales support</li>
+            <li>Maintenance services to keep your equipment running</li>
+            <li>Customer-centric support team ready to assist</li>
+          </ul>
 
-  <div class="row text-center mt-5">
-    <div class="col-md-4">
-      <h4>🛠️ Expert Maintenance</h4>
-      <p>Our technicians ensure every machine stays at peak performance.</p>
-    </div>
-    <div class="col-md-4">
-      <h4>🚜 Diverse Inventory</h4>
-      <p>We stock a wide range of machines ready for any industrial task.</p>
-    </div>
-    <div class="col-md-4">
-      <h4>🤝 Trusted Partnerships</h4>
-      <p>We build long-lasting relationships grounded in service and quality.</p>
+          <h3 class="mt-4">Why Choose Us?</h3>
+          <p>We blend technology with trust. Our web platform ensures easy browsing, secure transactions, and efficient communication with sellers and technicians.</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 {% endblock %}
+
+
 
 

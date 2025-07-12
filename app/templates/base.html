@@ -1,78 +1,60 @@
-<!doctype html>
+<!DOCTYPE html> 
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}R Machinery{% endblock %}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='machine.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  {% block extra_css %}{% endblock %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R Machinery</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/machine.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="icon" href="{{ url_for('static', filename='images/r_machinery_logo.png') }}">
 </head>
-<body id="{% block body_id %}{% endblock %}">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.home') }}">
-        <img src="{{ url_for('static', filename='images/r_machinery_logo.png') }}" alt="R Machinery Logo">
+
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="{{ url_for('main.home') }}" class="logo-link">
+        <img src="{{ url_for('static', filename='images/r_machinery_logo.png') }}" alt="R Machinery Logo" class="logo logo-header">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('main.home') }}">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('main.about') }}">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('sales.list_machines') }}">Machines</a></li>
-          {% if current_user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('main.logout') }}">Logout</a></li>
-          {% else %}
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('main.login') }}">Login</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('main.register') }}">Register</a></li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-  </nav>
+      <button class="navbar-toggle" id="mobile-toggle"><i class="fas fa-bars"></i></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="{{ url_for('main.home') }}">Home</a></li>
+        <li><a href="{{ url_for('main.about') }}">About</a></li>
+        <li><a href="{{ url_for('sales.list_machines') }}">Machines</a></li>
+        {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+        {% else %}
+        <li><a href="{{ url_for('main.login') }}">Login</a></li>
+        <li><a href="{{ url_for('main.register') }}">Register</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
 
-  <div class="container my-4">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-    {% block content %}{% endblock %}
-  </div>
+  {% block content %}{% endblock %}
 
-  <!-- Footer -->
-  <footer class="footer bg-light text-center text-md-start mt-5">
-    <div class="container py-4 d-flex flex-column flex-md-row justify-content-between align-items-center">
-      <div class="mb-2 mb-md-0 text-muted">
-        &copy; {{ current_year }} R Machinery. All rights reserved.
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-center">
+        <p class="text-center">&copy; {{ current_year }} R Machinery. All rights reserved.</p>
       </div>
-      <div class="social-icons">
-        <a href="https://facebook.com/rmachinerypage" target="_blank" class="text-rm-red me-3">
-          <i class="fab fa-facebook fa-lg"></i>
-        </a>
-        <a href="https://instagram.com/rmachinerypage" target="_blank" class="text-rm-red me-3">
-          <i class="fab fa-instagram fa-lg"></i>
-        </a>
-        <a href="https://wa.me/254700000000" target="_blank" class="text-rm-red">
-          <i class="fab fa-whatsapp fa-lg"></i>
-        </a>
+      <div class="footer-right">
+        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://wa.me/" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:info@rmachinery.com"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+123456789"><i class="fas fa-phone"></i></a>
       </div>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('mobile-toggle').addEventListener('click', function () {
+      document.getElementById('nav-links').classList.toggle('show');
+    });
+  </script>
 </body>
-</html>
 
+</html>
 
 

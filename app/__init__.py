@@ -28,10 +28,13 @@ def create_app():
     from app.routes import main as main_blueprint
     from app.sales import sales as sales_blueprint
     from app.maintenance import maintenance as maintenance_blueprint
+    from app.errors import errors as errors_blueprint
 
     app.register_blueprint(main_blueprint)
     app.register_blueprint(sales_blueprint)
     app.register_blueprint(maintenance_blueprint)
+    app.register_blueprint(errors_blueprint)
+
 
     @app.context_processor
     def inject_current_year():

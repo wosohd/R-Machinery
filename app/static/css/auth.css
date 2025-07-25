@@ -1,0 +1,85 @@
+/* === Auth Forms === */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--rm-light);
+}
+
+.form-wrapper {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1s ease;
+}
+
+.form-title {
+  color: var(--rm-red);
+  font-weight: bold;
+}
+
+.form-subtitle {
+  font-size: 0.95rem;
+  color: var(--rm-gray);
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #f1f1f1;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input-group i {
+  color: var(--rm-red);
+}
+
+.input-group input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  outline: none;
+}
+
+/* === Button Styling === */
+.btn-rm {
+  background-color: var(--rm-red);
+  color: white;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+.btn-rm:hover {
+  background-color: #a50e1a;
+}
+
+/* === Animation === */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fadeInUp 1s ease;
+}
+
+/* === Responsive === */
+@media (max-width: 576px) {
+  .form-wrapper {
+    padding: 2rem 1.25rem;
+  }
+}

@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/machine.css') }}">
+{% endblock %}
 {% block title %}Add Machine - R Machinery{% endblock %}
 {% block body_id %}add-machine-page{% endblock %}
 {% block content %}

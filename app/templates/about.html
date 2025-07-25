@@ -1,22 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="heading text-center my-5">
-  <span class="text-muted">About Us</span>
+<!-- Page Heading -->
+<div class="heading text-center my-5 fade-in">
   <h1 class="display-5 fw-bold">Get to Know Us</h1>
 </div>
 
-<div class="about-container container mb-5">
+<!-- About Section -->
+<div class="about-container container mb-5 fade-in">
   <div class="row align-items-center">
     <div class="col-md-6 mb-4">
-      <img src="{{ url_for('static', filename='images/about.png') }}" class="img-fluid rounded shadow" alt="About R Machinery">
+      <img src="{{ url_for('static', filename='images/bgtractor.png') }}" class="img-fluid rounded shadow" alt="About R Machinery">
     </div>
-    <div class="col-md-6">
-      <h3>About R Machinery</h3>
-      <p>
+    <div class="col-md-6 text-center text-md-start">
+      <h3 class="mb-3 text-rm-red">About R Machinery</h3>
+      <p class="lead text-muted">
         R Machinery is your trusted partner in quality heavy-duty equipment. We connect buyers with reliable sellers and ensure every machine meets top standards of performance, durability, and service.
       </p>
-      <p>
+      <p class="text-muted">
         Whether you're a contractor, farmer, or industrial buyer, our platform gives you access to a wide variety of machines across 15 distinct categories.
       </p>
       <a href="{{ url_for('sales.list_machines') }}" class="btn btn-rm mt-3">Browse Machines</a>
@@ -24,15 +25,39 @@
   </div>
 </div>
 
-<section class="newsletter bg-rm-red text-white text-center py-5">
-  <h2 class="mb-3">Subscribe To Our Newsletter</h2>
-  <form class="d-flex justify-content-center align-items-center flex-wrap gap-2">
-    <input type="email" placeholder="Enter Your Email..." class="form-control w-auto" style="max-width: 300px;" required>
-    <button type="submit" class="btn btn-light">Subscribe</button>
-  </form>
+<!-- Contact Us Section (replacing Newsletter) -->
+<section class="contact-us-section fade-in">
+  <div class="container text-center">
+    <h2 class="mb-4 text-white">Get in Touch</h2>
+    <p class="text-light mb-4">Reach out to us anytime through our social platforms or phone. We’re here to help you find the right machinery, fast.</p>
+
+    <div class="contact-icons d-flex flex-wrap justify-content-center gap-4">
+      <div class="contact-item">
+        <i class="fab fa-facebook fa-2x"></i>
+        <p>Facebook</p>
+      </div>
+      <div class="contact-item">
+        <i class="fab fa-instagram fa-2x"></i>
+        <p>Instagram</p>
+      </div>
+      <div class="contact-item">
+        <i class="fab fa-whatsapp fa-2x"></i>
+        <p>WhatsApp</p>
+      </div>
+      <div class="contact-item">
+        <i class="fab fa-twitter fa-2x"></i>
+        <p>X / Twitter</p>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone fa-2x"></i>
+        <p>+1 800 555 1234</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 {% endblock %}
+
 
 
 

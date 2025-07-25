@@ -1,42 +1,76 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="hero-fullscreen" style="background-image: url('{{ url_for('static', filename='images/bgtractor.png') }}');">
-  <div class="hero-overlay">
-    <div class="hero-text text-center">
-      <h1 class="display-4">Welcome to R Machinery</h1>
-      <p class="lead">Your trusted marketplace for heavy-duty equipment</p>
-      <a href="{{ url_for('sales.list_machines') }}" class="btn btn-rm mt-3">Browse Machines</a>
+
+<!-- Hero Section with Fullscreen Background and Blurred Overlay -->
+<section class="hero-section full-screen fade-in">
+  <div class="hero-content text-center">
+    <h1 class="hero-title">Welcome to <span class="highlight">R Machinery</span></h1>
+    <p class="hero-subtitle">Your trusted marketplace for heavy-duty equipment</p>
+    <p class="hero-info">
+      <i class="fas fa-industry"></i> Powering industries across <strong>construction</strong>, <strong>agriculture</strong> & more.
+    </p>
+    <a href="{{ url_for('sales.list_machines') }}" class="btn btn-rm mt-3">Browse Machines</a>
+  </div>
+</section>
+
+<!-- Website Overview Section -->
+<section class="overview-section py-5 text-center fade-in">
+  <div class="container who-we-are">
+    <h2 class="section-heading">Who We Are</h2>
+    <p class="section-lead">
+      At <strong>R Machinery</strong>, we connect buyers and sellers of high-performance heavy-duty equipment across 15 diverse categories.
+      Whether you're in <span class="highlight">construction</span>, <span class="highlight">agriculture</span>, or <span class="highlight">logistics</span>, we ensure
+      <em>trust</em>, <em>transparency</em>, and <em>service excellence</em> in every transaction.
+    </p>
+  </div>
+</section>
+
+<!-- Core Values Section -->
+<section class="who-we-are fade-in">
+  <div class="container">
+    <div class="core-values">
+      <div class="core-item fade-in">
+        <i class="fas fa-hard-hat"></i>
+        <h5>Durability</h5>
+        <p>Our machines are built to survive the toughest tasks — durable, reliable, and tough as nails.</p>
+      </div>
+      <div class="core-item fade-in">
+        <i class="fas fa-handshake"></i>
+        <h5>Verified Sellers</h5>
+        <p>We collaborate with only vetted sellers, ensuring you get quality with complete peace of mind.</p>
+      </div>
+      <div class="core-item fade-in">
+        <i class="fas fa-tools"></i>
+        <h5>After-Sales Support</h5>
+        <p>We walk with you post-purchase, offering expert servicing and dedicated assistance anytime.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="container mt-5">
-  <div class="row text-center">
-    <div class="col-md-4 mb-4">
-      <div class="card border-0 shadow h-100">
-        <div class="card-body">
-          <h5 class="card-title">Wide Selection</h5>
-          <p class="card-text">Browse machinery across 15 categories tailored to your needs.</p>
+<!-- Featured Machines Section -->
+<section class="featured-section py-5 bg-light fade-in">
+  <div class="container">
+    <h2 class="section-heading text-center">Featured Machinery</h2>
+    <div class="row">
+      {% for machine in featured_machines %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 featured-card">
+          <img src="{{ url_for('static', filename='images/machines/' + machine.image) }}" class="card-img-top" alt="{{ machine.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ machine.name }}</h5>
+            <p class="card-text">{{ machine.category }} - {{ machine.description[:80] }}...</p>
+            <a href="{{ url_for('sales.machine_detail', machine_id=machine.id) }}" class="btn btn-rm">View Details</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card border-0 shadow h-100">
-        <div class="card-body">
-          <h5 class="card-title">Trusted Sellers</h5>
-          <p class="card-text">All listings are vetted for quality and authenticity.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card border-0 shadow h-100">
-        <div class="card-body">
-          <h5 class="card-title">Support & Service</h5>
-          <p class="card-text">We offer top-notch after-sales support and machinery servicing.</p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
+
 {% endblock %}
+
+
+
 

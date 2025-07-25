@@ -3,6 +3,45 @@
 .machine-card {
   position: relative;
 }
+/* === Dropdown Menu === */
+.dropdown {
+  position: relative;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  color: var(--rm-dark);
+  min-width: 180px;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  top: 100%;
+  left: 0;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+.dropdown-content a {
+  color: var(--rm-dark);
+  padding: 10px 14px;
+  display: block;
+  transition: background-color 0.2s ease;
+}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* === Mobile Menu === */
+@media (max-width: 768px) {
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    background-color: transparent;
+  }
+  .dropdown-content a {
+    color: white;
+    padding: 8px 20px;
+  }
+}
 
 /* Responsive badge tweak if needed */
 @media (max-width: 768px) {

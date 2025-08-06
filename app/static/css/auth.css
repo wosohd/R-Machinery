@@ -1,4 +1,4 @@
-/* === Auth Forms === */
+/* === Auth Forms Shared Styles === */
 .auth-container {
   min-height: 100vh;
   display: flex;
@@ -50,6 +50,105 @@
   outline: none;
 }
 
+/* === Register Page === */
+.auth-page {
+  position: relative;
+  background: url('/static/images/auth-bg.jpg') center center / cover no-repeat fixed;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.auth-form-container {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  max-width: 420px;
+  width: 90%;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.auth-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
+.auth-subtext {
+  font-size: 1rem;
+  color: #ddd;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* === Login Page Variant === */
+.login-page {
+  background-color: #f4f6f8;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-form-container {
+  background-color: #ffffff;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  color: var(--rm-dark);
+}
+
+.login-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--rm-red);
+}
+
+.login-subtext {
+  font-size: 0.95rem;
+  color: var(--rm-gray);
+  margin-bottom: 1.5rem;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon i {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--rm-red);
+}
+
+.input-with-icon input {
+  padding-left: 2.2rem !important;
+}
+
 /* === Button Styling === */
 .btn-rm {
   background-color: var(--rm-red);
@@ -62,7 +161,7 @@
   background-color: #a50e1a;
 }
 
-/* === Animation === */
+/* === Animations === */
 @keyframes fadeInUp {
   from {
     transform: translateY(40px);
@@ -83,3 +182,5 @@
     padding: 2rem 1.25rem;
   }
 }
+
+

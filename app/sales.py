@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
 from flask_login import login_required, current_user
 from . import db
 from app.forms import MachineForm
@@ -15,10 +15,9 @@ def list_machines():
     query = Machine.query
 
     if category:
-        query = query.filter_by(category=category)
+        query = query.filter(Machine.category.ilike(f"%{category}%"))
     if search:
-        search_filter = f"%{search}%"
-        query = query.filter(Machine.name.ilike(search_filter))
+        query = query.filter(Machine.name.ilike(f"%{search}%"))
 
     machines = query.order_by(Machine.year.desc()).paginate(page=page, per_page=6)
     return render_template('machines.html', machines=machines)
@@ -48,3 +47,4 @@ def add_machine():
         flash('Machine listing added successfully!', 'success')
         return redirect(url_for('sales.list_machines'))
     return render_template('add_machine.html', form=form)
+

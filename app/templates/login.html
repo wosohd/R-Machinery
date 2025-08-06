@@ -1,39 +1,44 @@
 {% extends "base.html" %}
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 {% endblock %}
 {% block title %}Login - R Machinery{% endblock %}
 
 {% block content %}
-<div class="auth-container">
-  <div class="form-wrapper fade-in">
-    <h2 class="form-title text-center"><i class="fas fa-sign-in-alt"></i> Welcome Back</h2>
-    <p class="text-center form-subtitle">Log in to continue managing your machinery journey.</p>
-    
-    <form method="POST" action="{{ url_for('main.login') }}">
+<div class="auth-page">
+  <div class="auth-overlay"></div>
+  <div class="auth-form-container fade-in">
+    <h1 class="auth-heading"><i class="fas fa-sign-in-alt"></i> Welcome Back</h1>
+    <p class="auth-subtext">Log in to continue managing your machinery journey.</p>
+
+    <form method="POST" class="auth-form" action="{{ url_for('main.login') }}">
       {{ form.hidden_tag() }}
-      
-      <div class="input-group">
-        <label for="email"><i class="fas fa-envelope"></i></label>
-        {{ form.email(class_="form-control", placeholder="Email") }}
+
+      <div class="mb-3">
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control", placeholder="Email") }}
       </div>
-      
-      <div class="input-group">
-        <label for="password"><i class="fas fa-lock"></i></label>
-        {{ form.password(class_="form-control", placeholder="Password") }}
+
+      <div class="mb-3">
+        {{ form.password.label(class="form-label") }}
+        {{ form.password(class="form-control", placeholder="Password") }}
       </div>
-      
-      <div class="text-center mt-3">
-        {{ form.submit(class_="btn btn-rm w-100") }}
+
+      <div class="text-center">
+        {{ form.submit(class="btn btn-rm w-100 mt-3") }}
       </div>
-      
-      <p class="text-center mt-3 small">
-        Don't have an account? <a href="{{ url_for('main.register') }}">Register</a>
+
+      <p class="text-center mt-4 small">
+        Don’t have an account?
+        <a href="{{ url_for('main.register') }}" class="text-decoration-underline text-warning">Register here</a>
       </p>
     </form>
   </div>
 </div>
 {% endblock %}
+
+
+
 
 
 

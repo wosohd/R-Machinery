@@ -1,35 +1,51 @@
 {% extends "base.html" %}
 {% block title %}Machine Detail - R Machinery{% endblock %}
 {% block body_id %}machine-detail-page{% endblock %}
+
 {% block content %}
+<div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card shadow-sm">
-        <div class="card-header bg-rm-red text-white">
-          {{ machine.name }} - {{ machine.make_model }}
+        <div class="card-header bg-rm-red text-white text-center">
+          <h3 class="mb-0">{{ machine.name }} - {{ machine.make_model }}</h3>
         </div>
         <div class="card-body">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Year:</strong> {{ machine.year }}</li>
-            <li class="list-group-item"><strong>Category:</strong> {{ machine.category }}</li>
+            <li class="list-group-item">
+              <strong>Year:</strong> {{ machine.year }}
+            </li>
+            <li class="list-group-item">
+              <strong>Category:</strong> {{ machine.category }}
+            </li>
             {% if machine.serial_number %}
-              <li class="list-group-item"><strong>Serial Number:</strong> {{ machine.serial_number }}</li>
+              <li class="list-group-item">
+                <strong>Serial Number:</strong> {{ machine.serial_number }}
+              </li>
             {% endif %}
-            <li class="list-group-item"><strong>Status:</strong>
+            <li class="list-group-item">
+              <strong>Status:</strong>
               {% if machine.is_sold %}
                 <span class="badge bg-secondary">Sold</span>
               {% else %}
                 <span class="badge bg-success">Available</span>
               {% endif %}
             </li>
-            <li class="list-group-item"><strong>Description:</strong><br>{{ machine.description }}</li>
+            <li class="list-group-item">
+              <strong>Description:</strong><br>
+              <p class="mt-2 mb-0">{{ machine.description }}</p>
+            </li>
           </ul>
         </div>
         <div class="card-footer text-center">
-          <a href="https://facebook.com/rmachinerypage" target="_blank" class="btn btn-outline-danger">Contact Seller</a>
+          <a href="https://www.facebook.com/rmachinerypage" target="_blank" class="btn btn-outline-danger">
+            <i class="fab fa-facebook me-2"></i>Contact Seller
+          </a>
         </div>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}
+
 

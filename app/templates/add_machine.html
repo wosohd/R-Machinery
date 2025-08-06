@@ -1,48 +1,53 @@
 {% extends "base.html" %}
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/machine.css') }}">
-{% endblock %}
-{% block title %}Add Machine - R Machinery{% endblock %}
-{% block body_id %}add-machine-page{% endblock %}
+{% block title %}Machine Detail - R Machinery{% endblock %}
+{% block body_id %}machine-detail-page{% endblock %}
+
 {% block content %}
+<div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card shadow-sm">
-        <div class="card-header bg-rm-red text-white">Add New Machine</div>
+        <div class="card-header bg-rm-red text-white text-center">
+          <h3 class="mb-0">{{ machine.name }} - {{ machine.make_model }}</h3>
+        </div>
         <div class="card-body">
-          <form method="POST">
-            {{ form.hidden_tag() }}
-            <div class="mb-3">
-              {{ form.name.label(class="form-label") }}
-              {{ form.name(class="form-control") }}
-            </div>
-            <div class="mb-3">
-              {{ form.year.label(class="form-label") }}
-              {{ form.year(class="form-control") }}
-            </div>
-            <div class="mb-3">
-              {{ form.make_model.label(class="form-label") }}
-              {{ form.make_model(class="form-control") }}
-            </div>
-            <div class="mb-3">
-              {{ form.serial_number.label(class="form-label") }}
-              {{ form.serial_number(class="form-control") }}
-            </div>
-            <div class="mb-3">
-              {{ form.category.label(class="form-label") }}
-              {{ form.category(class="form-select") }}
-            </div>
-            <div class="mb-3">
-              {{ form.description.label(class="form-label") }}
-              {{ form.description(class="form-control", rows=4) }}
-            </div>
-            {{ form.submit(class="btn btn-rm w-100") }}
-          </form>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Year:</strong> {{ machine.year }}
+            </li>
+            <li class="list-group-item">
+              <strong>Category:</strong> {{ machine.category }}
+            </li>
+            {% if machine.serial_number %}
+              <li class="list-group-item">
+                <strong>Serial Number:</strong> {{ machine.serial_number }}
+              </li>
+            {% endif %}
+            <li class="list-group-item">
+              <strong>Status:</strong>
+              {% if machine.is_sold %}
+                <span class="badge bg-secondary">Sold</span>
+              {% else %}
+                <span class="badge bg-success">Available</span>
+              {% endif %}
+            </li>
+            <li class="list-group-item">
+              <strong>Description:</strong><br>
+              <p class="mt-2 mb-0">{{ machine.description }}</p>
+            </li>
+          </ul>
+        </div>
+        <div class="card-footer text-center">
+          <a href="https://www.facebook.com/rmachinerypage" target="_blank" class="btn btn-outline-danger">
+            <i class="fab fa-facebook me-2"></i>Contact Seller
+          </a>
         </div>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}
+
 
 
 

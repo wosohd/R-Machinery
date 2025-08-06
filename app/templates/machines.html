@@ -1,28 +1,42 @@
 {% extends "base.html" %}
+
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/machine.css') }}">
 {% endblock %}
-{% block title %}Available Machines - R Machinery{% endblock %}
+
+{% block title %}
+  {% if request.args.get('category') %}
+    {{ request.args.get('category') }} Machines - R Machinery
+  {% else %}
+    Available Machines - R Machinery
+  {% endif %}
+{% endblock %}
+
 {% block body_id %}machines-page{% endblock %}
 
 {% block content %}
-<div class="text-center mb-5">
-  <h2>Explore Our Machine Inventory</h2>
-  <p class="text-muted">Browse available machines across 15 categories.</p>
+<div class="text-center my-5">
+  {% if request.args.get('category') %}
+    <h2 class="text-rm-red">{{ request.args.get('category') }} Listings</h2>
+    <p class="text-muted">Explore machines in the {{ request.args.get('category') }} category.</p>
+  {% else %}
+    <h2>Explore Our Machine Inventory</h2>
+    <p class="text-muted">Browse available machines across 15 categories.</p>
+  {% endif %}
 </div>
 
 <div class="row">
   {% for machine in machines.items %}
     <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-header bg-rm-red text-white text-center">
+      <div class="card h-100 shadow-sm machine-card">
+        <div class="card-header bg-rm-red text-white text-center fw-bold">
           {{ machine.name }}
         </div>
         <div class="card-body">
           <h5 class="card-title">{{ machine.make_model }}</h5>
           <p class="card-text">
-            <strong>Year:</strong> {{ machine.year }}<br />
-            <strong>Category:</strong> {{ machine.category }}<br />
+            <strong>Year:</strong> {{ machine.year }}<br>
+            <strong>Category:</strong> {{ machine.category }}<br>
             <strong>Status:</strong>
             {% if machine.is_sold %}
               <span class="badge bg-secondary">Sold</span>
@@ -32,22 +46,29 @@
           </p>
         </div>
         <div class="card-footer text-center">
-          <a href="{{ url_for('machine_detail', machine_id=machine.id) }}" class="btn btn-outline-danger btn-sm">View Details</a>
+          <a href="{{ url_for('machine_detail', machine_id=machine.id) }}" class="btn btn-outline-danger btn-sm">
+            View Details
+          </a>
         </div>
       </div>
+    </div>
+  {% else %}
+    <div class="text-center text-muted">
+      <p>No machines found in this category.</p>
     </div>
   {% endfor %}
 </div>
 
 <div class="d-flex justify-content-center mt-4">
   {% if machines.has_prev %}
-    <a href="{{ url_for('list_machines', page=machines.prev_num) }}" class="btn btn-outline-secondary me-2">&laquo; Previous</a>
+    <a href="{{ url_for('sales.list_machines', page=machines.prev_num, category=request.args.get('category')) }}" class="btn btn-outline-secondary me-2">&laquo; Previous</a>
   {% endif %}
   {% if machines.has_next %}
-    <a href="{{ url_for('list_machines', page=machines.next_num) }}" class="btn btn-outline-secondary">Next &raquo;</a>
+    <a href="{{ url_for('sales.list_machines', page=machines.next_num, category=request.args.get('category')) }}" class="btn btn-outline-secondary">Next &raquo;</a>
   {% endif %}
 </div>
 {% endblock %}
+
 
 
 
